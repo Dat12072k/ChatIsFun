@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/item_mess_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="80dp"
+            app:cardCornerRadius="24dp"
+            android:backgroundTint="@color/secondaryLightColor">
+            <TextView
+                android:paddingHorizontal="18dp"
+                android:layout_marginVertical="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textAlignment="textStart"
+                android:text="helhell bsdda wfawfawa wffawdaw dawfawfaw"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEEN"
+            android:layout_marginHorizontal="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/item_mess_container"/>
+    </RelativeLayout>
+</layout>

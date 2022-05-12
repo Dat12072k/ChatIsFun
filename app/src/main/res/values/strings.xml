@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Chat Is Fun</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="re_password">Re-Password</string>
+    <string name="register">Register</string>
+    <string name="message">Message</string>
+    <string name="account">Account</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="information">Information</string>
+    <string name="name">Name</string>
+    <string name="submit">Submit</string>
+    <string name="phone_number">Phone number</string>
+    <string name="birth_day">Birth day</string>
+    <string name="address">Address</string>
+    <string name="my_information">My Information</string>
+    <string name="address1">Address:</string>
+    <string name="birthday1">Birthday:</string>
+    <string name="display_name">Display name:</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="you_are_not_logged_in">You are not logged in</string>
+    <string name="avatar">Avatar</string>
+    <string name="user_name">User name</string>
+    <string name="birthday">Birthday</string>
+    <string name="phone">Phone</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="open_library">Open Library</string>
+</resources>
