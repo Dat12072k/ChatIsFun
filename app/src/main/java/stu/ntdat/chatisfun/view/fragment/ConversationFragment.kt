@@ -2,6 +2,7 @@ package stu.ntdat.chatisfun.view.fragment
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,7 @@ class ConversationFragment : Fragment() {
     private val viewModel by activityViewModels<ConversationViewModel>()
     private val previewDialog by lazy { PreviewDialog(requireContext(), null) }
     private val messageAdapter by lazy { MessageAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,20 +59,7 @@ class ConversationFragment : Fragment() {
         binding.convToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
-
-        binding.recyclerView.adapter = messageAdapter
-//        lifecycleScope.launch {
-//            viewModel.test.collectLatest {
-//                messageAdapter.submitData(PagingData.from())
-//            }
-//        }
-        viewModel.test1.observe(viewLifecycleOwner) {
-            lifecycleScope.launch {
-                messageAdapter.submitData(PagingData.from(it))
-            }
-
-        }
-
+        loadMessage()
         return binding.root
     }
 
@@ -122,4 +111,15 @@ class ConversationFragment : Fragment() {
                 previewDialog.show(it)
             }
         }
+
+    private fun loadMessage() {
+        binding.recyclerView.adapter = messageAdapter
+        viewModel.getConvId(args.userId).observe(viewLifecycleOwner){
+            it?.let { convId ->
+                viewModel.getMessageList(convId).observe(viewLifecycleOwner) { list ->
+                    messageAdapter.submitList(list)
+                }
+            }
+        }
+    }
 }

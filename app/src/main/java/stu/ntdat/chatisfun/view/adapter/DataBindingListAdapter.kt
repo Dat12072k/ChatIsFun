@@ -1,5 +1,6 @@
 package stu.ntdat.chatisfun.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class DataBindingListAdapter<MODEL, DATA_BINDING_CLASS: ViewDataBinding>(
+abstract class DataBindingListAdapter<MODEL : Any, DATA_BINDING_CLASS: ViewDataBinding>(
     @LayoutRes val itemLayout: Int
 ): ListAdapter<MODEL, DataBindingViewHolder<DATA_BINDING_CLASS>>(BestBaseCallbackItem<MODEL>()) {
     override fun onCreateViewHolder(
@@ -45,10 +46,11 @@ fun <T: ViewDataBinding> ViewGroup.inflateBinding(@LayoutRes layoutId: Int, atta
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutId, this, attach)
 }
 
-abstract class BaseCallbackItem<MODEL>: DiffUtil.ItemCallback<MODEL>(){
+abstract class BaseCallbackItem<MODEL : Any>: DiffUtil.ItemCallback<MODEL>(){
     override fun areItemsTheSame(oldItem: MODEL, newItem: MODEL) = oldItem === newItem
 }
 
-open class BestBaseCallbackItem<ITEM>: BaseCallbackItem<ITEM>() {
+open class BestBaseCallbackItem<ITEM : Any>: BaseCallbackItem<ITEM>() {
+    @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: ITEM, newItem: ITEM) = oldItem.toString() == newItem.toString()
 }

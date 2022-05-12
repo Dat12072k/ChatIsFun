@@ -108,19 +108,15 @@ class MainRepository @Inject constructor(
     }
 
     fun signOut() {
-        CoroutineScope(Dispatchers.IO).launch {
-            clearDatabase()
-        }
+        clearDatabase()
         FirebaseFirestore.getInstance().clearPersistence()
         firebaseAuth.signOut()
     }
 
-    private suspend fun clearDatabase() {
-        database.chatUserDao.cleanTable()
-        database.chatConversationDao.cleanTable()
-        database.chatMessageDao.cleanTable()
-        database.convMessRelDao.cleanTable()
-        database.userConvRelDao.cleanTable()
+    private fun clearDatabase() {
+        CoroutineScope(Dispatchers.IO).launch {
+            database.clearAllTables()
+        }
     }
 
     companion object {

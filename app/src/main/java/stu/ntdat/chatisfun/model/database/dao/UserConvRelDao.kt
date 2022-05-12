@@ -17,6 +17,6 @@ interface UserConvRelDao : BaseDao<UserConvRel> {
     suspend fun cleanTable()
 
     @Query("SELECT convId FROM user_conv_rel WHERE userId == :userId")
-    suspend fun getConvId(userId: String): Flow<String?>
+    fun getConvId(userId: String): Flow<String?>
 
 }

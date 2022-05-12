@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ConversationViewModel @Inject constructor(
-    private val mainRepository: MainRepository
+    private val mainRepository: MainRepository,
 ) : ViewModel() {
     private val _isDone = MutableLiveData<Boolean>()
     private val _message = MutableLiveData<String>()
@@ -27,20 +27,12 @@ class ConversationViewModel @Inject constructor(
     val message: LiveData<String> = _message
     private val storageRef = FirebaseStorage.getInstance().reference
 
-    fun getConvId(userId: String) = liveData {
-        mainRepository.database.userConvRelDao.getConvId(userId).collect{
-            emit(it)
-        }
-    }
-    val test = Pager(
-        PagingConfig(
-            pageSize = 10, enablePlaceholders = false
-        )
-    )
-    {MessagePagingSource(mainRepository.database,"conv_1650687020100")}.flow.cachedIn(viewModelScope)
+    fun getConvId(userId: String) = mainRepository.database.userConvRelDao.getConvId(userId).asLiveData()
 
-    val test1 = liveData {
-        emit(mainRepository.database.chatMessageDao.getListMessByConvId("conv_1650687020100"))
+    fun getMessageList(convId: String) = liveData {
+        mainRepository.database.chatConversationDao.getConvAndMessByConvId(convId).collect {
+            it?.let{emit(it.message)}
+        }
     }
 
     private suspend fun sendMessage(userId: String, content: String, image: String = "") {

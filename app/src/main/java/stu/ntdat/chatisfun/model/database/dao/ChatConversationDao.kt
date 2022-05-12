@@ -25,6 +25,6 @@ interface ChatConversationDao : BaseDao<ChatConversation> {
     fun getConvAndUser(): Flow<List<ConvAndUser>?>
 
     @Query("SELECT * FROM conversation WHERE convId = :convId")
-    fun getConvAndMessByConvId(convId: String): Flow<ConvAndMess>
+    fun getConvAndMessByConvId(convId: String): Flow<ConvAndMess?>
 
 }

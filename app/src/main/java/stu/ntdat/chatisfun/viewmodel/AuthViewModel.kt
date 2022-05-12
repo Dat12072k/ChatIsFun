@@ -16,7 +16,7 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val accountRepository: AccountRepository
 ) : ViewModel() {
-    val firebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private val _message: MutableLiveData<String> = MutableLiveData()
     var message: LiveData<String> = _message
 
